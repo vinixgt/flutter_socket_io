@@ -1,4 +1,5 @@
 import 'package:chat_socketio/pages/home_page_widgets/nickname_form.dart';
+import 'package:chat_socketio/utils/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_socketio/utils/socket_client.dart';
 import 'package:get/state_manager.dart';
@@ -29,7 +30,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff102027),
       appBar: AppBar(
+        backgroundColor: accentColor,
         title: Obx(() {
           final users = SocketClient.instance.numUsers;
           return Text('Users ${users.value}');

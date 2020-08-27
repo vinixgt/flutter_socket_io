@@ -21,24 +21,52 @@ class _InputChatState extends State<InputChat> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: CupertinoTextField(
-            controller: _controller,
-            onChanged: SocketClient.instance.onInputChanged,
+    return Container(
+      decoration: BoxDecoration(
+        color: Color(0xff37474f),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: 5,
+        vertical: 5
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: CupertinoTextField(
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+              ),
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 5
+              ),
+              placeholder: 'Your message here...',
+              placeholderStyle: TextStyle(color: Color(0xff819ca9)),
+              style: TextStyle(
+                color: Colors.white,
+              ),
+              controller: _controller,
+              onChanged: SocketClient.instance.onInputChanged,
+            ),
           ),
-        ),
-        CupertinoButton(
-          child: Icon(Icons.send),
-          onPressed: (){
-            final bool sent = SocketClient.instance.sendMessage();
-            if(sent) {
-              _controller.text='';
-            }
-          },
-        )
-      ],
+          CupertinoButton(
+            borderRadius: BorderRadius.circular(50),
+            color: Color(0xffcfd8dc),
+            padding: EdgeInsets.all(5),
+            child: Icon(
+              Icons.send,
+              color: Color(0xff819ca9)
+            ),
+            onPressed: (){
+              final bool sent = SocketClient.instance.sendMessage();
+              if(sent) {
+                _controller.text='';
+              }
+            },
+          )
+        ],
+      ),
     );
   }
 }
