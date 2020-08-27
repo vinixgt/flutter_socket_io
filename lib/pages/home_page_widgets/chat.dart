@@ -1,9 +1,9 @@
 import 'package:chat_socketio/models/chat_message.dart';
+import 'package:chat_socketio/pages/home_page_widgets/input_chat.dart';
 import 'package:chat_socketio/utils/socket_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:socket_io_client/socket_io_client.dart';
 
 
 class Chat extends StatefulWidget {
@@ -48,12 +48,7 @@ class _ChatState extends State<Chat> {
               );
               }
             ),
-            CupertinoTextField(
-              onChanged: (text){
-                SocketClient.instance.onInputChanged(text);
-
-              },
-            )
+            InputChat()
           ],
         ),
       ),

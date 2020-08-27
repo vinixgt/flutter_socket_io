@@ -94,7 +94,7 @@ class SocketClient {
       print('user left $data');
       this._numUsers.value = data['numUsers'] as int;
       showSimpleNotification(
-        Text('${data['username']}'),
+        Text('${data['username']} left'),
         background: Colors.red
       );
     });
@@ -109,7 +109,6 @@ class SocketClient {
         )
       );
     });
-
   }
 
   void disconnect(){
@@ -130,5 +129,19 @@ class SocketClient {
       });
     }
     this._inputText.value = text;
+  }
+
+  bool sendMessage() {
+    if(this._inputText.value.trim().length > 0) {
+      this._socket.emit('new message', this._inputText.value);
+      this._messages.add(ChatMessage(
+          username: this._nickname,
+          message: this._inputText.value,
+          sender: true
+      ));
+      print(this._messages.last);
+      return true;
+    }
+    return false;
   }
 } // class
