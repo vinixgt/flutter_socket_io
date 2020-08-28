@@ -101,13 +101,16 @@ class SocketClient {
 
     this._socket.on('new message', (data) {
       print('message: $data');
-      this._messages.add(
-        ChatMessage(
-          username: data['username'],
-          message: data['message'],
-          sender: false
-        )
-      );
+      if(data['message'] != null && data['message'].length > 0 ) {
+        this._messages.add(
+          ChatMessage(
+            username: data['username'],
+            message: data['message'],
+            sender: false
+          )
+        );
+
+      }
     });
   }
 

@@ -16,7 +16,7 @@ class _InputChatState extends State<InputChat> {
   final TextEditingController _controller = TextEditingController();
   
   @override
-  void dispse() {
+  void dispose() {
     _controller.dispose();
     super.dispose();
   }
@@ -63,8 +63,9 @@ class _InputChatState extends State<InputChat> {
             ),
             onPressed: (){
               final bool sent = SocketClient.instance.sendMessage();
+              print('se envio el mensage? --------- $sent');
               if(sent) {
-                _controller.text='';
+                this._controller.text='';
                 widget.onSent();
               }
             },

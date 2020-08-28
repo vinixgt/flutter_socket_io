@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     SocketClient.instance.disconnect();
+    super.dispose();
   }
 
   @override
