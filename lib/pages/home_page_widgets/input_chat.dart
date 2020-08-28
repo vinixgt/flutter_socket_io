@@ -2,15 +2,17 @@ import 'package:chat_socketio/utils/socket_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+
 class InputChat extends StatefulWidget {
-  const InputChat({Key key}) : super(key: key);
+  final VoidCallback onSent;
+  const InputChat({Key key, @required this.onSent}) : super(key: key);
 
   @override
   _InputChatState createState() => _InputChatState();
 }
 
 class _InputChatState extends State<InputChat> {
-
   final TextEditingController _controller = TextEditingController();
   
   @override
@@ -22,6 +24,7 @@ class _InputChatState extends State<InputChat> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top:0),
       decoration: BoxDecoration(
         color: Color(0xff37474f),
         borderRadius: BorderRadius.circular(30),
@@ -62,6 +65,7 @@ class _InputChatState extends State<InputChat> {
               final bool sent = SocketClient.instance.sendMessage();
               if(sent) {
                 _controller.text='';
+                widget.onSent();
               }
             },
           )
